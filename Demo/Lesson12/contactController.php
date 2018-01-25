@@ -3,7 +3,8 @@
     $db->exec("set names utf8");
     
     $notification = '';
-    $queryInsertIntoClients = "INSERT INTO clients (email, nom, prenom, telephone, commune, commentaire) "
+    $queryInsertIntoClients = "INSERT INTO clients "
+            . "(email, nom, prenom, telephone, commune, commentaire) "
             . "VALUES (?, ?, ?, ?, ?, ?)";
     
     $ps = $db->prepare($queryInsertIntoClients);

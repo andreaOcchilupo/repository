@@ -29,10 +29,11 @@ USE `isuzu`;
 --
 
 CREATE TABLE `clients` (
+  `id_client` int(11) NOT NULL,
   `email` varchar(500) NOT NULL,
   `nom` varchar(100) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
-  `telephone` char(10) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
   `commune` varchar(100) DEFAULT NULL,
   `commentaire` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -41,18 +42,18 @@ CREATE TABLE `clients` (
 -- Contenu de la table `clients`
 --
 
-INSERT INTO `clients` (`email`, `nom`, `prenom`, `telephone`, `commune`, `commentaire`) VALUES
-('andrea-occhilupo@hotmail.com', 'Occhilupo', 'Andrea', '0495129130', 'Wolluwe-Saint-Lambert', 'com 1'),
-('andrea-occhilupo@hotmail.comf', 'fff', 'fff', 'fff', 'Wolluwe-Saint-Lambert', 'fff'),
-('andrea-occhiluspo@hotmail.com', 's', 's', 's', 'Ixelles', 's'),
-('test1@test1.test1', 'test1', 'test1', 'test1', 'Wolluwe-Saint-Lambert', 'test1'),
-('test2@test2.test2', 'test2', 'test2', 'test2', 'Wolluwe-Saint-Pierre', 'test2'),
-('test3@test3.test3', 'test3', 'test2test3', 'test3', 'Wolluwe-Saint-Pierre', 'test3'),
-('test4@test4.test4', 'test4', 'test4', 'test4', 'Wolluwe-Saint-Lambert', 'test4'),
-('test5@test5.test5', 'test5', 'test5', 'test5', '.', 'test5'),
-('test6@test6.test6', 'test6', 'test6', 'test6', 'Wolluwe-Saint-Lambert', 'test6'),
-('test7@test7.test7', 'test7', 'test7', 'test7', 'Ixelles', 'test7'),
-('test8@test8.test8', 'test8', 'test8', 'test8', 'Ixelles', 'test8');
+INSERT INTO `clients` (`id_client`,`email`, `nom`, `prenom`, `telephone`, `commune`, `commentaire`) VALUES
+(1, 'andrea-occhilupo@hotmail.com', 'Occhilupo', 'Andrea', '0495129130', 'Wolluwe-Saint-Lambert', 'com 1'),
+(2, 'andrea-occhilupo@hotmail.comf', 'fff', 'fff', 'fff', 'Wolluwe-Saint-Lambert', 'fff'),
+(3, 'andrea-occhiluspo@hotmail.com', 's', 's', 's', 'Ixelles', 's'),
+(4, 'test1@test1.test1', 'test1', 'test1', 'test1', 'Wolluwe-Saint-Lambert', 'test1'),
+(5, 'test2@test2.test2', 'test2', 'test2', 'test2', 'Wolluwe-Saint-Pierre', 'test2'),
+(6, 'test3@test3.test3', 'test3', 'test2test3', 'test3', 'Wolluwe-Saint-Pierre', 'test3'),
+(7, 'test4@test4.test4', 'test4', 'test4', 'test4', 'Wolluwe-Saint-Lambert', 'test4'),
+(8, 'test5@test5.test5', 'test5', 'test5', 'test5', '.', 'test5'),
+(9, 'test6@test6.test6', 'test6', 'test6', 'test6', 'Wolluwe-Saint-Lambert', 'test6'),
+(10, 'test7@test7.test7', 'test7', 'test7', 'test7', 'Ixelles', 'test7'),
+(11, 'test8@test8.test8', 'test8', 'test8', 'test8', 'Ixelles', 'test8');
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ INSERT INTO `communes` (`id_commune`, `nom`) VALUES
 -- Index pour la table `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id_client`);
 
 --
 -- Index pour la table `communes`
@@ -94,6 +95,15 @@ ALTER TABLE `communes`
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
+
+--
+-- AUTO_INCREMENT pour la table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 --
 -- AUTO_INCREMENT pour la table `communes`

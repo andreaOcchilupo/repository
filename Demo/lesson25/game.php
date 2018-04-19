@@ -9,28 +9,34 @@
         <div class="container">
             <h1>Battle Ship</h1>
             <main>
+                <h4><span id="instruction"></span></h4>
                 <div id="ships" class="ships">
-                    <div>
+                    <div id="boatSize4">
                         <div></div><div></div><div></div><div></div>
                     </div>
-                    <div>
+                    <div id="boatSize3">
                         <div></div><div></div><div></div>
                     </div>
-                    <div>
+                    <div id="boatSize2">
                         <div></div><div></div>
                     </div>
-                    <div>
+                    <div id="boatSize2bis">
+                        <div></div><div></div>
+                    </div>
+                    <div id="boatSize1">
                         <div></div>
                     </div>
                 </div>
+                <h4><span id="error"></span></h4>
                 <div id="other" class="board">
 
                 </div>
                 <div id="me" class="board">
-
+                    
                 </div>
                 <div>
                     <h3>Statut : <span id="state">CONFIGURING</span></h3>
+                    <h4><span id="victory"></span></h4>
                 </div>
             </main>
         </div>

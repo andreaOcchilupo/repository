@@ -10,7 +10,7 @@
             <h1>Battle Ship</h1>
             <main>
                 <h4><span id="instruction"></span></h4>
-                <div id="ships" class="ships">
+                <div id="ships" class="ships" style="display: none">
                     <div id="boatSize4">
                         <div></div><div></div><div></div><div></div>
                     </div>
@@ -27,6 +27,7 @@
                         <div></div>
                     </div>
                 </div>
+                <h4><span id="notification"></span></h4>
                 <h4><span id="error"></span></h4>
                 <div id="other" class="board">
 

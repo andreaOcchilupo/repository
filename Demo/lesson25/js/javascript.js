@@ -3,12 +3,12 @@ const PLAYING = 2;
 const DONE = 3;
 var state = CONFIGURING;
 var size = 10;
-var nrCellsMe = 0;
-var nrCellsOther = 0;
+var nrBoatsMe = 0;
+var nrBoatsOther = 0;
 var boatSize = 0;
 var tabBoat = [1,2,2,3,4];
 function makeCellDiff(board, x, y) {
-    return "<div data-forbidden='" + false + "'data-board='" + board + "' data-x='" + x + "' data-y='" + y + "' class='cell'></div>";
+    return "<div data-board='" + board + "' data-x='" + x + "' data-y='" + y + "' class='cell'></div>";
 }
 function makeContent(board, size) {
     var content = "";
@@ -39,19 +39,19 @@ function cellClicked(ev) {
 
 function meCellClicked(ev) {
     if(state === CONFIGURING && ev.target.style.backgroundColor !== "white") {
-        ev.target.innerHTML = '<div id="' + boatSize + '">"' + for(var i=0; i++; i<tabBoat.length){ + '"<select>"' + tabBoat[i] + '"</select>"' + } + '"</div>'
-        nrCellsMe++;
         ev.target.setAttribute('data-boat', true);
         ev.target.style.backgroundColor = "white";
+        nrBoatsMe++;
     }
 }
 
 function otherCellClicked(ev) {
     switch(state) {
         case CONFIGURING:
-            initOtherBoard(nrCellsMe);
+            initOtherBoard(nrBoatsMe);
             state = PLAYING;
             setStatus(state);
+            document.getElementById("notification").innerHTML = "";
             fire(ev.target);
             if(state !== DONE)
                 pcFire();
@@ -69,7 +69,7 @@ function otherCellClicked(ev) {
 }
 
 function victory(){
-    if(nrCellsMe===0)
+    if(nrBoatsMe===0)
         document.getElementById("victory").innerHTML = "Computer WIN";
     else
         document.getElementById("victory").innerHTML = "You WIN";
@@ -90,16 +90,16 @@ function fire(cellEl) {
     }
     else{
         deleteError();
-        if(nrCellsOther !== 0){
+        if(nrBoatsOther !== 0){
             if(cellEl.getAttribute('data-boat') === "true") {
                cellEl.style.backgroundColor = 'red';
-               nrCellsOther--;
+               nrBoatsOther--;
                cellEl.setAttribute('data-boat',false);
           } else if(cellEl.style.backgroundColor !== 'red') {
               cellEl.style.backgroundColor = 'gray';
           }
         }
-     if(nrCellsOther === 0){
+     if(nrBoatsOther === 0){
             state = DONE;
             setStatus(state);
         }
@@ -111,16 +111,16 @@ function pcFire() {
     while(cellEl.style.backgroundColor === 'red' || cellEl.style.backgroundColor === 'gray'){
         cellEl = selectCell('me');
     }
-    if(nrCellsMe !== 0){
+    if(nrBoatsMe !== 0){
         if(cellEl.getAttribute('data-boat') === "true") {
             cellEl.style.backgroundColor = 'red';
-            nrCellsMe--;
+            nrBoatsMe--;
             cellEl.setAttribute('data-boat',false);
         } else if(cellEl.style.backgroundColor !== 'red'){
             cellEl.style.backgroundColor = 'gray';
         }
     }
-    if(nrCellsMe === 0){
+    if(nrBoatsMe === 0){
                 state = DONE;
                 setStatus(state);
     }
@@ -144,7 +144,7 @@ function initOtherBoard(nrCells) {
             cellEl.setAttribute('data-boat', true);
             console.log('Add a boat at ' + cellEl.getAttribute('data-x') + "," + cellEl.getAttribute('data-y'));
             n--;
-            nrCellsOther++;
+            nrBoatsOther++;
         }
     }
     if(antiHangup === 0) {
